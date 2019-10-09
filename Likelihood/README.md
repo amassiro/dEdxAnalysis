@@ -12,4 +12,5 @@ Fit
     
 Draw
 
-    r99t Draw.cxx\(\"ttree.root\"\)
+    r99t Draw.cxx\(\"../../dEdxCalibration/Plotting/data_calibration/7Sep2019/Calibrated-MC-CR-2018-Hadded/DYJetsToLL_M50_HT100to200/treeProducerXtracks/tree.filtered.skimmed.root\"\)
+    r99t Draw.cxx\(\"tree.filtered.skimmed.root\"\)
