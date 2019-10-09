@@ -7,49 +7,156 @@ void Draw(std::string nameFile) {
   
   TTree* tree = (TTree*) fileIn->Get("tree");
   
-   
-  TCanvas* mycc2 = new TCanvas ("mycc2", "", 800, 600);
+
+  TCanvas* mycctest = new TCanvas ("mycctest", "", 800, 600);
   
-  //   
-  //   https://root.cern.ch/root/html/tutorials/fit/langaus.C.html
-  //   
-  //   
-  //   //par[0]=Width (scale) parameter of Landau density
-  //   //par[1]=Most Probable (MP, location) parameter of Landau density
-  //   //par[2]=Total area (integral -inf to inf, normalization constant)
-  //   //par[3]=Width (sigma) of convoluted Gaussian function
-  //   
 //   
+//   IsoTrack_pixByHit 
+//      1 = bpix  
+//      2 = fpix
+//      
+//   IsoTrack_layerOrSideByHit
+//      1
+//      2
+//      3
+//      4
 //   
-//   EXT PARAMETER                                   STEP         FIRST   
-//   NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
-//   1  p0           2.23944e-01   1.15281e-03   3.17857e-06   8.26056e-02
-//   2  p1           2.41976e+00   1.44900e-03   4.77642e-06  -1.57049e-01
-//   3  p2           1.04642e-01   2.01036e-04   7.70407e-07   5.29265e-01
-//   4  p3           3.53386e-01   2.09308e-03   5.31332e-06   8.05870e-03
-//   
+     
+  tree->Draw ("IsoTrack_dedxByHit1[best_track]", "(IsoTrack_layerOrSideByHit1[best_track] == 1) && (IsoTrack_pixByHit1[best_track] == 1 ) " );
   
-  
-  TF1 *function2 = new TF1("function2",langaufun, 1, 7, 4);
-  
-  function2->SetParameters(0.22, 2.42, 0.1, 0.35);
-  function2->SetLineColor(kBlue);
-  function2->SetLineStyle(2);
-  function2->SetLineWidth(2);
-  
-  function2->Draw("PL");
   
   TCanvas* mycc = new TCanvas ("mycc", "", 800, 600);
   
-  tree->Draw ("IsoTrack_dedxByHit1[best_track]", "(IsoTrack_layerOrSideByHit1[best_track] == 1) && (IsoTrack_ladderOrBladeByHit1[best_track] == 1) && (IsoTrack_pixByHit1[best_track] == 1 ) && ( (  abs(IsoTrack_eta[best_track] ) >=0.000000) && (  abs(IsoTrack_eta[best_track] ) <2.500000)   ) " );
+  
+//   tree->Draw ("langausBPIXL1(Alt$(IsoTrack_dedxByHit1[0], -1)) * ( Alt$(IsoTrack_layerOrSideByHit1[0], -1) == 1 )", " (IsoTrack_pixByHit1 == 1 ) " );
+  tree->Draw ("langausBPIXL1(Alt$(IsoTrack_dedxByHit1[0], -1))", " (IsoTrack_pixByHit1[0] == 1 ) && (IsoTrack_layerOrSideByHit1[0] == 1)" );
   
   
+//   langausBPIXL1
+//   langausBPIXL23
+//   langausBPIXL4
+//   langausFPIX
+   
+  TCanvas* mycc_prod = new TCanvas ("mycc_prod", "", 800, 600);
   
-  TCanvas* mycc3 = new TCanvas ("mycc3", "", 800, 600);
+//   tree->Draw ("langausBPIXL1(Alt$(IsoTrack_dedxByHit1[0], -1))\
+              *langausBPIXL1(Alt$(IsoTrack_dedxByHit2[0], -1))\
+              *langausBPIXL1(Alt$(IsoTrack_dedxByHit3[0], -1))\
+              *langausBPIXL1(Alt$(IsoTrack_dedxByHit4[0], -1))\
+              ", " (IsoTrack_pixByHit1[0] == 1 ) && (IsoTrack_layerOrSideByHit1[0] == 1)" );
+  
+  TH1F* histo_bkg = new TH1F ("histo_bkg", "", 200, 0, 0.01);
+  TH1F* histo_bkg_log = new TH1F ("histo_bkg_log", "", 200, 0, 100);
+  
+  TTreeReader treeReader("tree", fileIn);
+  
+  TTreeReaderArray<Float_t> IsoTrack_dedxByHit1(treeReader, "IsoTrack_dedxByHit1");
+  TTreeReaderArray<Float_t> IsoTrack_dedxByHit2(treeReader, "IsoTrack_dedxByHit2");
+  TTreeReaderArray<Float_t> IsoTrack_dedxByHit3(treeReader, "IsoTrack_dedxByHit3");
+  TTreeReaderArray<Float_t> IsoTrack_dedxByHit4(treeReader, "IsoTrack_dedxByHit4");
+
+  TTreeReaderArray<int> IsoTrack_layerOrSideByHit1(treeReader, "IsoTrack_layerOrSideByHit1");
+  TTreeReaderArray<int> IsoTrack_layerOrSideByHit2(treeReader, "IsoTrack_layerOrSideByHit2");
+  TTreeReaderArray<int> IsoTrack_layerOrSideByHit3(treeReader, "IsoTrack_layerOrSideByHit3");
+  TTreeReaderArray<int> IsoTrack_layerOrSideByHit4(treeReader, "IsoTrack_layerOrSideByHit4");
+  
+  TTreeReaderArray<int> IsoTrack_pixByHit1(treeReader, "IsoTrack_pixByHit1");
+  TTreeReaderArray<int> IsoTrack_pixByHit2(treeReader, "IsoTrack_pixByHit2");
+  TTreeReaderArray<int> IsoTrack_pixByHit3(treeReader, "IsoTrack_pixByHit3");
+  TTreeReaderArray<int> IsoTrack_pixByHit4(treeReader, "IsoTrack_pixByHit4");
 
 
-  tree->Draw ("langaus(IsoTrack_dedxByHit1[best_track])", "(IsoTrack_layerOrSideByHit1[best_track] == 1) && (IsoTrack_ladderOrBladeByHit1[best_track] == 1) && (IsoTrack_pixByHit1[best_track] == 1 ) && ( (  abs(IsoTrack_eta[best_track] ) >=0.000000) && (  abs(IsoTrack_eta[best_track] ) <2.500000)   ) " );
   
+//   int nevents = tree->GetEntries();
+//   for (int ievent = 0; ievent < nevents; ievent++) {
+//     tree->GetEntry(ievent);
+    
+  while (treeReader.Next()) {
+    
+    float product_likelihood = 1.;
+    float sum_log_likelihood = 0.;
+    
+    float temp_product_likelihood;
+    
+    if ((IsoTrack_pixByHit1[0] == 1 ) && (IsoTrack_layerOrSideByHit1[0] == 1)) {
+      temp_product_likelihood = langausBPIXL1( (IsoTrack_dedxByHit1[0]) );
+    }
+    else if ((IsoTrack_pixByHit1[0] == 1 ) && (IsoTrack_layerOrSideByHit1[0] == 2  ||  IsoTrack_layerOrSideByHit1[0] == 3)) {
+      temp_product_likelihood = langausBPIXL23( (IsoTrack_dedxByHit1[0]) );
+    }
+    else if ((IsoTrack_pixByHit1[0] == 1 ) && (IsoTrack_layerOrSideByHit1[0] == 4)) {
+      temp_product_likelihood = langausBPIXL4( (IsoTrack_dedxByHit1[0]) );
+    }
+    else if (IsoTrack_pixByHit1[0] == 2 ) {
+      temp_product_likelihood = langausFPIX( (IsoTrack_dedxByHit1[0]) );
+    }
+    
+    product_likelihood *= temp_product_likelihood;
+    sum_log_likelihood -= log(temp_product_likelihood);
+   
+    //----------
+    if ((IsoTrack_pixByHit1[1] == 1 ) && (IsoTrack_layerOrSideByHit1[1] == 1)) {
+      temp_product_likelihood = langausBPIXL1( (IsoTrack_dedxByHit1[1]) );
+    }
+    else if ((IsoTrack_pixByHit1[1] == 1 ) && (IsoTrack_layerOrSideByHit1[1] == 2  ||  IsoTrack_layerOrSideByHit1[1] == 3)) {
+      temp_product_likelihood = langausBPIXL23( (IsoTrack_dedxByHit1[1]) );
+    }
+    else if ((IsoTrack_pixByHit1[1] == 1 ) && (IsoTrack_layerOrSideByHit1[1] == 4)) {
+      temp_product_likelihood = langausBPIXL4( (IsoTrack_dedxByHit1[1]) );
+    }
+    else if (IsoTrack_pixByHit1[1] == 2 ) {
+      temp_product_likelihood = langausFPIX( (IsoTrack_dedxByHit1[1]) );
+    }
+    
+    product_likelihood *= temp_product_likelihood;
+    sum_log_likelihood -= log(temp_product_likelihood);
+    
+    //----------
+    if ((IsoTrack_pixByHit1[2] == 1 ) && (IsoTrack_layerOrSideByHit1[2] == 1)) {
+      temp_product_likelihood = langausBPIXL1( (IsoTrack_dedxByHit1[2]) );
+    }
+    else if ((IsoTrack_pixByHit1[2] == 1 ) && (IsoTrack_layerOrSideByHit1[2] == 2  ||  IsoTrack_layerOrSideByHit1[2] == 3)) {
+      temp_product_likelihood = langausBPIXL23( (IsoTrack_dedxByHit1[2]) );
+    }
+    else if ((IsoTrack_pixByHit1[2] == 1 ) && (IsoTrack_layerOrSideByHit1[2] == 4)) {
+      temp_product_likelihood = langausBPIXL4( (IsoTrack_dedxByHit1[2]) );
+    }
+    else if (IsoTrack_pixByHit1[2] == 2 ) {
+      temp_product_likelihood = langausFPIX( (IsoTrack_dedxByHit1[2]) );
+    }
+    
+    //----------
+//     if ((IsoTrack_pixByHit1[3] == 1 ) && (IsoTrack_layerOrSideByHit1[3] == 1)) {
+//       temp_product_likelihood = langausBPIXL1( (IsoTrack_dedxByHit1[3]) );
+//     }
+//     else if ((IsoTrack_pixByHit1[3] == 1 ) && (IsoTrack_layerOrSideByHit1[3] == 2  ||  IsoTrack_layerOrSideByHit1[3] == 3)) {
+//       temp_product_likelihood = langausBPIXL23( (IsoTrack_dedxByHit1[3]) );
+//     }
+//     else if ((IsoTrack_pixByHit1[3] == 1 ) && (IsoTrack_layerOrSideByHit1[3] == 4)) {
+//       temp_product_likelihood = langausBPIXL4( (IsoTrack_dedxByHit1[3]) );
+//     }
+//     else if (IsoTrack_pixByHit1[3] == 2 ) {
+//       temp_product_likelihood = langausFPIX( (IsoTrack_dedxByHit1[3]) );
+//     }
+//     
+//     product_likelihood *= temp_product_likelihood;
+//     sum_log_likelihood -= log(temp_product_likelihood);
+    
+    
+    
+    //----------
+    
+    histo_bkg->Fill(product_likelihood);
+    histo_bkg_log->Fill(sum_log_likelihood);
+    
+  }
+  
+  
+  histo_bkg->Draw();
+  
+  
+  TCanvas* mycc_prod_log = new TCanvas ("mycc_prod_log", "", 800, 600);
+  histo_bkg_log->Draw();
   
 }
 
