@@ -25,15 +25,24 @@ void Draw(std::string nameFile, std::string nameFileSig) {
 //      4
 //   
      
-  tree->Draw ("IsoTrack_dedxByHit1[best_track]", "(IsoTrack_layerOrSideByHit1[best_track] == 1) && (IsoTrack_pixByHit1[best_track] == 1 ) " );
+  TH1F* histo_dedx_bkg = new TH1F ("histo_dedx_bkg", "", 80, 0, 10);
+  TH1F* histo_dedx_sig = new TH1F ("histo_dedx_sig", "", 80, 0, 10);
+  
+  tree->   Draw ("IsoTrack_dedxByHit1[0] >> histo_dedx_bkg", " 1 " );
+  treeSig->Draw ("IsoTrack_dedxByHit1[0] >> histo_dedx_sig", " 1 " );
+  
+  histo_dedx_sig->SetLineColor(kRed);
+  
+  histo_dedx_bkg->DrawNormalized();
+  histo_dedx_sig->DrawNormalized("same");
   
   
   TCanvas* mycc = new TCanvas ("mycc", "", 800, 600);
   
-  
+   
 //   tree->Draw ("langausBPIXL1(Alt$(IsoTrack_dedxByHit1[0], -1)) * ( Alt$(IsoTrack_layerOrSideByHit1[0], -1) == 1 )", " (IsoTrack_pixByHit1 == 1 ) " );
-  tree->Draw ("langausBPIXL1(Alt$(IsoTrack_dedxByHit1[0], -1))", " (IsoTrack_pixByHit1[0] == 1 ) && (IsoTrack_layerOrSideByHit1[0] == 1)" );
-  
+  tree->   Draw ("langausBPIXL1(Alt$(IsoTrack_dedxByHit1[0], -1))", " (IsoTrack_pixByHit1[0] == 1 ) && (IsoTrack_layerOrSideByHit1[0] == 1)" );
+
   
 //   langausBPIXL1
 //   langausBPIXL23
