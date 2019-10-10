@@ -48,8 +48,12 @@ void Draw(std::string nameFile, std::string nameFileSig) {
               *langausBPIXL1(Alt$(IsoTrack_dedxByHit4[0], -1))\
               ", " (IsoTrack_pixByHit1[0] == 1 ) && (IsoTrack_layerOrSideByHit1[0] == 1)" );
   
-  TH1F* histo_bkg = new TH1F ("histo_bkg", "", 200, 0, 0.01);
-  TH1F* histo_bkg_log = new TH1F ("histo_bkg_log", "", 200, 0, 100);
+  
+  float max_likelihood = 0.004;
+  float max_log_likelihood = 30;
+  
+  TH1F* histo_bkg = new TH1F ("histo_bkg", "", 200, 0, max_likelihood);
+  TH1F* histo_bkg_log = new TH1F ("histo_bkg_log", "", 200, 0, max_log_likelihood);
   
   TTreeReader treeReader("tree", fileIn);
   
@@ -156,8 +160,8 @@ void Draw(std::string nameFile, std::string nameFileSig) {
   
   
    
-  TH1F* histo_sig = new TH1F ("histo_sig", "", 200, 0, 0.01);
-  TH1F* histo_sig_log = new TH1F ("histo_sig_log", "", 200, 0, 100);
+  TH1F* histo_sig = new TH1F ("histo_sig", "", 200, 0, max_likelihood);
+  TH1F* histo_sig_log = new TH1F ("histo_sig_log", "", 200, 0, max_log_likelihood);
   
   
   TTreeReader treeReaderSig("tree", fileInSig);

@@ -31,9 +31,7 @@ DrawValidation
 Draw
 
     r99t Draw.cxx\(\"../../dEdxCalibration/Plotting/data_calibration/7Sep2019/Calibrated-MC-CR-2018-Hadded/DYJetsToLL_M50_HT100to200/treeProducerXtracks/tree.filtered.skimmed.root\",\"sig.root\"\)
-    r99t Draw.cxx\(\"tree.filtered.skimmed.root\",\"tree_filtered_tree_Wino_M_1000_cTau_10.root\"\)
-
-    --> missing tree for sig with "byHit", currently running on crab
+    r99t Draw.cxx\(\"tree.filtered.skimmed.root\",\"data/Wino_M_1000_cTau_10/treeProducerXtracks/tree.root\"\)
     
     
     
