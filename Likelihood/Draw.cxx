@@ -33,6 +33,7 @@ void Draw(std::string nameFile, std::string nameFileSig) {
   
   histo_dedx_sig->SetLineColor(kRed);
   
+  histo_dedx_bkg->GetXaxis()->SetTitle("dE/dx");
   histo_dedx_bkg->DrawNormalized();
   histo_dedx_sig->DrawNormalized("same");
   
