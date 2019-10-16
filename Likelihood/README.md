@@ -37,7 +37,17 @@ Draw for strips
 
     r99t DrawStrip.cxx\(1,\"tree.filtered.skimmed.root\",\"data/Wino_M_1000_cTau_10/treeProducerXtracks/tree.root\"\)
     
+    r99t Fit.cxx\(\"data/strips_1.root\"\)
 
 
+    r99t DrawStrip.cxx\(1,\"tree.filtered.skimmed.root\",\"data/Wino_M_1000_cTau_10/treeProducerXtracks/tree.root\"\)
+    r99t DrawStrip.cxx\(2,\"tree.filtered.skimmed.root\",\"data/Wino_M_1000_cTau_10/treeProducerXtracks/tree.root\"\)
+    r99t DrawStrip.cxx\(3,\"tree.filtered.skimmed.root\",\"data/Wino_M_1000_cTau_10/treeProducerXtracks/tree.root\"\)
+    r99t DrawStrip.cxx\(4,\"tree.filtered.skimmed.root\",\"data/Wino_M_1000_cTau_10/treeProducerXtracks/tree.root\"\)
+    
+    r99t Fit.cxx\(\"data/strips_1.root\"\)
+    r99t Fit.cxx\(\"data/strips_2.root\"\)
+    r99t Fit.cxx\(\"data/strips_3.root\"\)
+    r99t Fit.cxx\(\"data/strips_4.root\"\)
     
     

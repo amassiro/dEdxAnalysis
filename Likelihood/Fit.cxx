@@ -87,7 +87,7 @@ void Fit (std::string nameFile) {
   
 //   TH1F* histo_mc = (TH1F*) cc->GetPrimitive("h_ilayer_2__iEdge_0__dedxById_BPIX_mc");
   
-  TCanvas* mycc = new TCanvas ("mycc", "", 800, 600);
+  TCanvas* mycc = new TCanvas ("mycc", "simple", 800, 600);
   
 //   
 //   Double_t      Landau(Double_t x, Double_t mpv = 0, Double_t sigma = 1, Bool_t norm = kFALSE)
@@ -119,7 +119,7 @@ void Fit (std::string nameFile) {
   
   
   
-  TCanvas* mycc2 = new TCanvas ("mycc2", "", 800, 600);
+  TCanvas* mycc2 = new TCanvas ("mycc2", "langaus", 800, 600);
   
 //   
 //   https://root.cern.ch/root/html/tutorials/fit/langaus.C.html
