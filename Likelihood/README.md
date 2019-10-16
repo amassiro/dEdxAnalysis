@@ -33,6 +33,11 @@ Draw
     r99t Draw.cxx\(\"../../dEdxCalibration/Plotting/data_calibration/7Sep2019/Calibrated-MC-CR-2018-Hadded/DYJetsToLL_M50_HT100to200/treeProducerXtracks/tree.filtered.skimmed.root\",\"sig.root\"\)
     r99t Draw.cxx\(\"tree.filtered.skimmed.root\",\"data/Wino_M_1000_cTau_10/treeProducerXtracks/tree.root\"\)
     
+Draw for strips
+
+    r99t DrawStrip.cxx\(1,\"tree.filtered.skimmed.root\",\"data/Wino_M_1000_cTau_10/treeProducerXtracks/tree.root\"\)
     
+
+
     
     
