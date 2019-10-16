@@ -220,8 +220,103 @@ void DrawValidation() {
   
   
   
+  //---- Strips
+  
+  
+//   1  p0           2.86362e-01   1.08959e-03   2.77642e-06   3.22288e-01
+//   2  p1           2.92919e+00   1.09912e-03   3.91510e-06  -4.05528e-02
+//   3  p2           1.27921e-01   2.09208e-04   8.06157e-07   1.86443e-01
+//   4  p3           2.44380e-01   2.02388e-03   4.93030e-06   2.76243e-01
+  
+  
+  TF1 *function_Strips_1 = new TF1("function_Strips_1",langaufun, 0, 7, 4);
+  
+  function_Strips_1->SetParameters(0.29, 2.93, 0.1, 0.24);
+  function_Strips_1->SetLineColor(kRed);
+  function_Strips_1->SetLineStyle(2);
+  function_Strips_1->SetLineWidth(4);
+  
+  function_Strips_1->Draw("PL");
+  
+  
+  
+  
+  
+//   1  p0           2.78472e-01   2.73621e-03   2.09542e-06   3.40884e-01
+//   2  p1           2.91218e+00   2.83291e-03   3.00994e-06   1.42917e-02
+//   3  p2           1.28728e-01   5.44822e-04   6.33784e-07   4.60114e-01
+//   4  p3           2.44745e-01   4.95571e-03   3.58629e-06   7.39687e-02
+  
+  
+  
+  TF1 *function_Strips_2 = new TF1("function_Strips_2",langaufun, 0, 7, 4);
+  
+  function_Strips_2->SetParameters(0.27, 2.91, 0.1, 0.25);
+  function_Strips_2->SetLineColor(kRed+2);
+  function_Strips_2->SetLineStyle(2);
+  function_Strips_2->SetLineWidth(4);
+  
+  function_Strips_2->Draw("PL same");
+  
+  
+  
+  
+//   1  p0           3.05141e-01   7.73441e-03   3.54636e-06  -9.53029e-02
+//   2  p1           2.88541e+00   7.90288e-03   5.29774e-06  -4.03756e-02
+//   3  p2           1.26929e-01   1.49353e-03   1.10932e-06   8.68036e-02
+//   4  p3           1.98406e-01   1.46802e-02   6.53771e-06  -7.32570e-02
+  
+  
+  TF1 *function_Strips_3 = new TF1("function_Strips_3",langaufun, 0, 7, 4);
+  
+  function_Strips_3->SetParameters(0.31, 2.90, 0.1, 0.20);
+  function_Strips_3->SetLineColor(kRed+4);
+  function_Strips_3->SetLineStyle(2);
+  function_Strips_3->SetLineWidth(4);
+  
+  function_Strips_3->Draw("PL same");
+  
+  
+//   1  p0           2.83055e-01   1.25329e-02   4.10761e-06  -4.91600e-02
+//   2  p1           2.86048e+00   1.37609e-02   6.36340e-06  -3.67565e-02
+//   3  p2           1.26501e-01   2.56044e-03   1.37359e-06   3.02950e-02
+//   4  p3           2.07122e-01   2.61601e-02   7.89932e-06   9.46450e-03
+  
+  
+  TF1 *function_Strips_4 = new TF1("function_Strips_4",langaufun, 0, 7, 4);
+  
+  function_Strips_4->SetParameters(0.28, 2.86, 0.1, 0.21);
+  function_Strips_4->SetLineColor(kRed+6);
+  function_Strips_4->SetLineStyle(2);
+  function_Strips_4->SetLineWidth(4);
+  
+  function_Strips_4->Draw("PL same");
+  
   
  
+  
+  
+  
+//   par[0] = 0.29;
+//   par[1] = 2.90;
+//   par[2] = 0.1;
+//   par[3] = 0.23;
+  
+  TF1 *function_Strips = new TF1("function_Strips",langaufun, 0, 7, 4);
+  
+  function_Strips->SetParameters(0.29, 2.90, 0.1, 0.23);
+  function_Strips->SetLineColor(kOrange);
+  function_Strips->SetLineStyle(3);
+  function_Strips->SetLineWidth(8);
+  
+  function_Strips->Draw("PL same");
+  
+  
+  
+  
+  
+  
+  
 }
 
 
